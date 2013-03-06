@@ -114,6 +114,23 @@ a.tap {
 }
 ```
 
+Removing iOS tap outlines
+-------------------------
+  
+``` css
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-user-select: none;                /* disable text select */
+  -webkit-touch-callout: none;              /* disable callout, image save panel (popup) */
+  -webkit-tap-highlight-color: transparent; /* "turn off" link highlight */
+}
+```
+
+Sources: [bitsandpix.com], [yuiblog.com]
+
+[bitsandpix.com]:http://www.bitsandpix.com/entry/ios-webkit-uiwebview-remove-tapclick-highlightborder-with-css/ 
+[yuiblog.com]:http://www.yuiblog.com/blog/2010/10/01/quick-tip-customizing-the-mobile-safari-tap-highlight-color/ 
+
 Disabling Simpletap
 -------------------
 
