@@ -18,9 +18,10 @@
   <textarea rows='20'></textarea>
 
   <script>
-    $.simpletap({ stopClicks: true });
-    $('a').on('tap click', function(e) {
+    $.simpletap();
+    $('a').on('tap', function(e) {
       $('textarea').html($('textarea').html() + e.type + " <a>\n");
+      e.preventDefault();
     });
   </script>
   

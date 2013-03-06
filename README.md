@@ -81,16 +81,18 @@ In this case, it behaves like so:
 
 ### Stopping links
 
-When attaching tap events to links and buttons, stopping isn't really 
-straightforward.
+When attaching tap events to links and buttons, stopping is straightforward.
+Doing `preventDefault()`, or `stopPropagation()`, or 
+`stopImmediatePropagation()` on taps will propagate those to clicks as well, 
+  cancelling any link/button clicks.
 
 ``` javascript
 $('a').on('tap', function(e) {
-  e.preventDefault();   // Will NOT work
+  e.preventDefault();
 });
 ```
 
-You can tell Simpletap to stop all clicks by default. This will do 
+You can also tell Simpletap to stop all clicks by default. This will do 
 `preventDefault()` on clicks.
 
 ``` javascript
