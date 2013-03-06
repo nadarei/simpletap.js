@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title></title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="vendor/jquery.js"></script>
     <script src="simpletap.js"></script>
   <style>
     a { width: 100px; height: 100px; background: green; display: block; }
@@ -16,12 +16,12 @@
   <a style='' href='#'>
   </a>
 
-  <textarea></textarea>
+  <textarea rows='20'></textarea>
 
   <script>
     $.simpletap();
-    $('a').on('tap', function() {
-      $('textarea').html($('textarea').html() + 'tapped');
+    $('a').on('tap', function(e) {
+      $('textarea').html($('textarea').html() + "tapped <a>\n");
     });
   </script>
   
