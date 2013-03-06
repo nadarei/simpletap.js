@@ -90,19 +90,8 @@ $('a').on('tap', function(e) {
 });
 ```
 
-You'll need to listed to the `click` event as well. This will, however, trigger 
-twice (since clicks will produce taps as well), so you'll have to turn off the 
-`emulateTaps` option.
-
-``` javascript
-$.simpletap({ emulateTaps: false });
-
-$('a').on('click tap', function(e) {
-  e.preventDefault();   // Will work!
-});
-```
-
-You can tell Simpletap to stop all clicks by default.
+You can tell Simpletap to stop all clicks by default. This will do 
+`preventDefault()` on clicks.
 
 ``` javascript
 $.simpletap({
