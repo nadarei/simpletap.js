@@ -3,7 +3,11 @@
 
 ;(function($) {
 
-  var tapStart, tapEnd, lastTap, enabled, timer;
+  var tapStart,
+      tapEnd,
+      lastTap,    // The last tapped element
+      enabled,    // If simpletap has been called before
+      timer;
 
   $.simpletap = function(options) {
     if (enabled) return;
@@ -15,6 +19,7 @@
       'timeout': 400,
       'event': 'tap',
       'activeClass': 'tap',
+      'emulateTaps': true,
       'stopClicks': false
     };
 
@@ -49,19 +54,21 @@
         ((Math.abs(tapEnd.x - tapStart.x) < options.threshold) &&
         (Math.abs(tapEnd.y - tapStart.y) < options.threshold))) {
 
-        // Trigger the tap, and cancel the touch
-        var event = $.Event(options.event, { target: e.originalEvent.target });
-        $(target).trigger(event);
+        // Cancel the touch. In touch-enabled Windows desktops, this will
+        // cancel the click event as well.
         e.preventDefault();
 
-        // Prevent clicks in the next 400ms
+        // Trigger a constructed `tap` event.
+        triggerTap(e, $(target));
+
+        // Prevent clicks in the next 400ms.
         if (typeof timer !== 'undefined') clearTimeout(timer);
         timer = setTimeout(function() {
           lastTap = false;
           timer = undefined;
         }, options.timeout);
 
-        // Unset CSS class if needed
+        // Unset CSS class if needed.
         if (options.activeClass) $(target).removeClass(options.activeClass);
       }
 
@@ -70,18 +77,40 @@
       tapEnd = false;
     });
 
-    // Make click events trigger tap events.
-    // (If this is triggered in the next 400ms after a tap, it will not trigger)
+    // Do two things:
+    //   [1] If this is triggered in the next 400ms after a tap, cancel the click.
+    //   [2] Make click events trigger tap events.
     $(document).on('click.simpletap', options['for'], function(e) {
-      if (!lastTap || !$(this).closest(lastTap).length) {
-        $(this).trigger(options.event);
+      if (lastTap && $(this).closest(lastTap).length) { /* [1] */
+        e.preventDefault();
+        e.stopPropagation();
+      } else if (options.emulateTaps) { /* [2] */
+        var tapEvent = triggerTap(e, $(this));
 
         if (options.stopClicks) {
           e.preventDefault();
           e.stopPropagation();
+        } else {
+          // If `e.stopPropagation()` was done on the tap event, do it here too.
+          propagatePrevention(tapEvent, e);
         }
       }
     });
+
+    // Constructs a `tap` event.
+    function triggerTap(e, target) {
+      var event = $.Event(options.event, { target: e.originalEvent.target });
+      target.trigger(event);
+      return event;
+    }
+
+    // Copy the `preventDefault()` (et al) calls from one event (`from`) to
+    // another event (`to`).
+    function propagatePrevention(from, to) {
+      if (from.isDefaultPrevented()) to.preventDefault();
+      if (from.isPropagationStopped()) to.stopPropagation();
+      if (from.isImmediatePropagationStopped()) to.stopImmediatePropagation();
+    }
 
     // Returns the target element from a given jQuery event `e`, taking the
     // selector restriction into account.

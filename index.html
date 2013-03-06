@@ -20,8 +20,11 @@
 
   <script>
     $.simpletap();
-    $('a').on('tap', function(e) {
-      $('textarea').html($('textarea').html() + "tapped <a>\n");
+    $('a').on('tap click', function(e) {
+      console.log(e);
+      e.preventDefault();
+      e.stopPropagation();
+      $('textarea').html($('textarea').html() + e.type + " <a>\n");
     });
   </script>
   

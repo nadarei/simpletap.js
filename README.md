@@ -39,12 +39,13 @@ $.simpletap({
   timeout: 400,        // Amount of time to supress clicks
   event: 'tap',        // Event name to be triggered
   activeClass: 'tap',  // CSS class to add to tapped things
-  stopClicks: false    // Stop click events from happening
+  emulateTaps: true,  // Emulate taps when clicks happen
+  stopClicks: false    // Stop all click events from happening
 });
 ```
 
-Caveats
--------
+Caveats & recommendations
+-------------------------
 
 ### Restricting elements
 
@@ -52,20 +53,31 @@ Only the top-most element will be triggered. This means if you have an
 element like so:
 
 ``` html
-<a href='#' class='btn'>
+<button class='btn primary'>
   <i class='trash'></i> Delete
-</a>
+</button>
 ```
 
 ...and you click on the trash icon, it will be the `<i>` that will receive
-the `tap` event, not `a`.
+the `tap` event, not `button`.
 
 To get around this, restrict the tappable element selector to those you're
 concerned about:
 
 ``` javascript
-$.simpletap({ 'for': 'a, button' });
+$.simpletap({ 'for': 'button' });
 ```
+
+### Devices that support touch and click
+
+Some devices support both. For instance, there are Lenovo PCs with touch screens 
+and pointing devices.
+
+In this case, it behaves like so:
+
+ * Touch taps produce `tap` event.
+ * Clicks produce both `tap` and `click` by default.
+ * If the `emulateTaps` option is disabled, clicks will only produce clicks.
 
 ### Stopping links
 
@@ -74,7 +86,19 @@ straightforward.
 
 ``` javascript
 $('a').on('tap', function(e) {
-  e.preventDefault(); // Will not work
+  e.preventDefault();   // Will NOT work
+});
+```
+
+You'll need to listed to the `click` event as well. This will, however, trigger 
+twice (since clicks will produce taps as well), so you'll have to turn off the 
+`emulateTaps` option.
+
+``` javascript
+$.simpletap({ emulateTaps: false });
+
+$('a').on('click tap', function(e) {
+  e.preventDefault();   // Will work!
 });
 ```
 
