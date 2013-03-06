@@ -30,7 +30,7 @@ Tap events will also be triggered when you click.
 Advanced usage
 --------------
 
-You can specify custom options:
+You can specify custom options. Note that these are *all optional*.
 
 ``` javascript
 $.simpletap({
@@ -38,7 +38,8 @@ $.simpletap({
   threshold: 10,       // Maximum finger distance for taps in pixels
   timeout: 400,        // Amount of time to supress clicks
   event: 'tap',        // Event name to be triggered
-  activeClass: 'tap'   // CSS class to add to tapped things
+  activeClass: 'tap',  // CSS class to add to tapped things
+  stopClicks: false    // Stop click events from happening
 });
 ```
 

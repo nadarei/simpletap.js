@@ -14,7 +14,8 @@
       'threshold': 10,
       'timeout': 400,
       'event': 'tap',
-      'activeClass': 'tap'
+      'activeClass': 'tap',
+      'stopClicks': false
     };
 
     options = $.extend({}, defaults, options || {});
@@ -73,6 +74,11 @@
     $(document).on('click', options['for'], function(e) {
       if (!lastTap || !$(this).closest(lastTap).length) {
         $(this).trigger(options.event);
+
+        if (options.stopClicks) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
       }
     });
 
