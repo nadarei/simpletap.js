@@ -99,7 +99,8 @@
 
     // Constructs a `tap` event.
     function triggerTap(e, target) {
-      var event = $.Event(options.event, { target: e.originalEvent.target });
+      var eventTarget = e.originalEvent && e.originalEvent.target || e.target || target;
+      var event = $.Event(options.event, { target: eventTarget });
       target.trigger(event);
       return event;
     }
