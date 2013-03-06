@@ -46,6 +46,8 @@ $.simpletap({
 Caveats
 -------
 
+### Restricting elements
+
 Only the top-most element will be triggered. This means if you have an
 element like so:
 
@@ -63,6 +65,26 @@ concerned about:
 
 ``` javascript
 $.simpletap({ 'for': 'a, button' });
+```
+
+### Stopping links
+
+When attaching tap events to links and buttons, stopping isn't really 
+straightforward.
+
+``` javascript
+$('a').on('tap', function(e) {
+  e.preventDefault(); // Will not work
+});
+```
+
+You can tell Simpletap to stop all clicks by default.
+
+``` javascript
+$.simpletap({
+  'for': 'a, button',
+  'stopClicks': true
+});
 ```
 
 Styling tapped objects
