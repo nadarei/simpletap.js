@@ -68,17 +68,6 @@ concerned about:
 $.simpletap({ 'for': 'button' });
 ```
 
-### Devices that support touch and click
-
-Some devices support both. For instance, there are Lenovo PCs with touch screens 
-and pointing devices.
-
-In this case, it behaves like so:
-
- * Touch taps produce `tap` event.
- * Clicks produce both `tap` and `click` by default.
- * If the `emulateTaps` option is disabled, clicks will only produce clicks.
-
 ### Stopping links
 
 When attaching tap events to links and buttons, stopping is straightforward.
@@ -101,6 +90,18 @@ $.simpletap({
   'stopClicks': true
 });
 ```
+
+Devices that support touch and click
+------------------------------------
+
+Some devices support both. For instance, there are Lenovo PCs with touch screens 
+and pointing devices.
+
+In this case, it behaves like so:
+
+ * Touch taps produce `tap` event.
+ * Clicks produce both `tap` and `click` by default.
+ * If the `emulateTaps` option is disabled, clicks will only produce clicks.
 
 Styling tapped objects
 ----------------------
