@@ -3,6 +3,11 @@ Simpletap.js
 
 Enables fast tap events across all elements. Requires jQuery 1.8.
 
+See the [Creating Fast Buttons for Mobile Web Applications][buttons] article for 
+the rationale of why this needs to exist.
+
+[buttons]: https://developers.google.com/mobile/articles/fast_buttons
+
 Usage
 -----
 
@@ -70,6 +75,18 @@ a.tap {
   background: #333;
 }
 ```
+
+Limitations
+-----------
+
+Only handles taps. Other touch events like pinching and swiping are not handled.
+Other libraries exist that may getSaround Simpletap's limitations:
+
+ * [Touchable](https://github.com/dotmaster/Touchable-jQuery-Plugin):
+   Handles other touch events.
+
+ * [Tappable](https://github.com/cheeaun/tappable):
+   Has more options and events, and implements a *noScroll* mode.
 
 Acknowledgements
 ----------------
