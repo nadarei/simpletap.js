@@ -10,8 +10,8 @@
       timer;
 
   $.simpletap = function(options) {
-    if (enabled) return;
-    enabled = true;
+    // Ensure it's unbound
+    $.simpletap.disable();
 
     var defaults = {
       'for': '*',
@@ -123,6 +123,10 @@
       }
       return target;
     }
+  };
+
+  $.simpletap.disable = function() {
+    $(document).off('.simpletap');
   };
 
 })(jQuery);

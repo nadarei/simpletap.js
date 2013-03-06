@@ -123,6 +123,12 @@ a.tap {
 }
 ```
 
+Disabling Simpletap
+-------------------
+
+You can use `$.simpletap.disable()` to unbind all events Simpletap has bound.  
+This returns your document back to the state before `$.simpletap()` was called.
+
 Limitations
 -----------
 
