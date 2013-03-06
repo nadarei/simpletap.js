@@ -21,7 +21,7 @@
     options = $.extend({}, defaults, options || {});
 
     // Store the origin (tapStart) when a touch event starts.
-    $(document).on('touchstart', function(e) {
+    $(document).on('touchstart.simpletap', function(e) {
       // Ensure that it's restricted to options.for.
       var target = getTarget(e);
       if (!target) return;
@@ -36,12 +36,12 @@
       if (options.activeClass) $(target).addClass(options.activeClass);
     });
 
-    $(document).on('touchmove', function(e) {
+    $(document).on('touchmove.simpletap', function(e) {
       var touches = e.originalEvent.touches;
       tapEnd = { x: touches[0].screenX, y: touches[0].screenY };
     });
 
-    $(document).on('touchend', function(e) {
+    $(document).on('touchend.simpletap', function(e) {
       var target = getTarget(e);
       if (!target) return;
 
@@ -71,7 +71,7 @@
 
     // Make click events trigger tap events.
     // (If this is triggered in the next 400ms after a tap, it will not trigger)
-    $(document).on('click', options['for'], function(e) {
+    $(document).on('click.simpletap', options['for'], function(e) {
       if (!lastTap || !$(this).closest(lastTap).length) {
         $(this).trigger(options.event);
 
