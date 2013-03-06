@@ -50,7 +50,8 @@
         (Math.abs(tapEnd.y - tapStart.y) < options.threshold))) {
 
         // Trigger the tap, and cancel the touch
-        $(target).trigger(options.event);
+        var event = $.Event(options.event, { target: e.originalEvent.target });
+        $(target).trigger(event);
         e.preventDefault();
 
         // Prevent clicks in the next 400ms
