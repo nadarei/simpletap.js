@@ -105,7 +105,8 @@
     }
 
     // Copy the `preventDefault()` (et al) calls from one event (`from`) to
-    // another event (`to`).
+    // another event (`to`). This is used to propagate them from `tap` events
+    // to `click` events.
     function propagatePrevention(from, to) {
       if (from.isDefaultPrevented()) to.preventDefault();
       if (from.isPropagationStopped()) to.stopPropagation();
