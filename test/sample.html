@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <title></title>
-    <script src="vendor/jquery.js"></script>
-    <script src="simpletap.js"></script>
+    <script src="../vendor/jquery.js"></script>
+    <script src="../simpletap.js"></script>
   <style>
-    a { width: 100px; height: 100px; background: green; display: block; }
+    a { width: 100px; height: 100px; line-height: 100px; text-align: center; background: green; display: block; color: white; }
     a.tap { background: black; }
   </style>
 
 </head>
 <body style=''>
 
-  <a style='' href='#'>
-  </a>
+  <a style='' href='#'>Tap me</a>
 
   <textarea rows='20'></textarea>
 
   <script>
-    $.simpletap();
+    $.simpletap({ stopClicks: true });
     $('a').on('tap click', function(e) {
-      console.log(e);
-      e.preventDefault();
-      e.stopPropagation();
       $('textarea').html($('textarea').html() + e.type + " <a>\n");
     });
   </script>
