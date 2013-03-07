@@ -8,6 +8,20 @@ the rationale of why this needs to exist.
 
 [buttons]: https://developers.google.com/mobile/articles/fast_buttons
 
+Why Simpletap?
+--------------
+
+* Elements don't need to exist when binding the tap event. Simpletap listens for 
+  all touches in the `document` and finds out what element you tapped (jQuery 
+      delegation style).
+
+* You can affect all elements if you wish.
+
+* You can use `event.preventDefault()` in taps to stop default click behaviors.
+
+* It has explicit support for touchscreen PCs (ie, user agents with both touch 
+    and click events).
+
 Usage
 -----
 
