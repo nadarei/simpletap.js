@@ -75,6 +75,10 @@ element like so:
 ...and you click on the trash icon, it will be the `<i>` that will receive
 the `tap` event, not `button`.
 
+This is often good enough, because the event will propagate down to it's 
+ancestors anyway. But the `activeClass` (`tap`) will be applied to `i` in this 
+case.
+
 To get around this, restrict the tappable element selector to those you're
 concerned about:
 
