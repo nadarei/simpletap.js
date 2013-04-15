@@ -160,7 +160,13 @@ Limitations
 -----------
 
 Only handles taps. Other touch events like pinching and swiping are not handled.
-Other libraries exist that may getSaround Simpletap's limitations:
+Other libraries exist that may get around Simpletap's limitations.
+
+Alternatives
+------------
+
+ * [Fastclick](https://github.com/ftlabs/fastclick):
+   Transparently makes click events behave like taps.
 
  * [Touchable](https://github.com/dotmaster/Touchable-jQuery-Plugin):
    Handles other touch events.
