@@ -1,4 +1,4 @@
-if (require) require('./setup');
+if (typeof module === 'object') require('./setup');
 
 testSuite('Simpletap', function() {
   describe('Basic functions', function() {
