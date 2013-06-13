@@ -4,7 +4,6 @@ chai.should();
 
 var fs = require('fs');
 var multisuite = require('./support/multisuite');
-global.testSuite = multisuite(['jq-1.7', 'jq-1.8', 'jq-1.9', 'jq-1.10', 'jq-2.0'], myEnv);
 
 var scripts = {
   'jq-1.7':  fs.readFileSync('vendor/jquery-1.7.js'),
@@ -29,4 +28,11 @@ function myEnv(jq) {
       }
     });
   };
+}
+
+if (process.env.fast) {
+  before(myEnv('jq-1.10'));
+  global.testSuite = describe;
+} else {
+  global.testSuite = multisuite(['jq-1.7', 'jq-1.8', 'jq-1.9', 'jq-1.10', 'jq-2.0'], myEnv);
 }
