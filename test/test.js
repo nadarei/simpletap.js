@@ -1,5 +1,6 @@
-;(function() {
+if (require) require('./setup');
 
+testSuite('Simpletap', function() {
   describe('Basic functions', function() {
     beforeEach(function() {
       this.div = $("<div>").appendTo('body');
@@ -167,7 +168,7 @@
   });
 
   // ----------------------------------------------------------------------------
-  
+
   describe('Custom selectors', function() {
     beforeEach(function() {
       this.div  = $("<div>").appendTo('body');
@@ -218,5 +219,4 @@
     obj.originalEvent = obj;
     return $.Event(name, obj);
   }
-
-})();
+});
