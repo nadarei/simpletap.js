@@ -1,5 +1,4 @@
 // Deps
-global.extend = require('util')._extend;
 global.chai = require('chai');
 chai.should();
 
