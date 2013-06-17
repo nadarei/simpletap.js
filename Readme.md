@@ -8,7 +8,7 @@ the rationale of why this needs to exist.
 
 [buttons]: https://developers.google.com/mobile/articles/fast_buttons
 
-[![Build Status](https://travis-ci.org/nadarei/simpletap.js.png?branch=master)](https://travis-ci.org/rstacruz/ndialog)
+[![Build Status](https://travis-ci.org/nadarei/simpletap.js.png?branch=master)](https://travis-ci.org/nadarei/simpletap.js)
 
 Why Simpletap?
 --------------
